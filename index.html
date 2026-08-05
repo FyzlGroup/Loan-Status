@@ -1,73 +1,78 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+  <meta name="referrer" content="no-referrer">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="
+      default-src 'none';
+      frame-src https://script.google.com https://script.googleusercontent.com;
+      img-src https://i.imgur.com data:;
+      style-src 'unsafe-inline';
+      script-src 'unsafe-inline';
+      base-uri 'none';
+      form-action 'none';
+    "
+  >
   <title>FyzlGroup Loan Status</title>
-
   <link
     rel="icon"
     type="image/png"
-    href="https://i.imgur.com/m7CiCu3_d.png">
-
-</head>
-
-<body>
-
-  <iframe
-    id="loanFrame"
-    width="100%"
-    height="100%"
-    allowfullscreen="true"
-    style="position:fixed;top:0;left:0;width:100%;height:100%;border:none;">
-  </iframe>
-
-  <script>
-
-    const WEB_APP =
-      "https://script.google.com/a/macros/fyzlgroup.com/s/AKfycbxcQSXDxoFFDnW_0JqQrLdWswXTETbPD_nnPWWb_5qBhyBUQjGnyQ73c0GLZAe22SjwUQ/exec";
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-    const token =
-      params.get("token");
-
-    let iframeUrl =
-      WEB_APP;
-
-    if (token) {
-
-      iframeUrl +=
-        "?token=" +
-        encodeURIComponent(token);
-
+    href="https://i.imgur.com/m7CiCu3_d.png"
+  >
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #f7f7f7;
     }
 
-    const frame =
-      document.getElementById(
-        "loanFrame"
-      );
+    #loanFrame {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    id="loanFrame"
+    title="Fyzl Group Mortgage Loan Portal"
+    referrerpolicy="no-referrer"
+    allow="fullscreen"
+  ></iframe>
 
-    frame.src =
-      iframeUrl;
+  <script>
+    "use strict";
 
-    window.onload = function () {
+   // LIVE const WEB_APP =
+     // "https://script.google.com/a/macros/fyzlgroup.com/s/AKfycbxcQSXDxoFFDnW_0JqQrLdWswXTETbPD_nnPWWb_5qBhyBUQjGnyQ73c0GLZAe22SjwUQ/exec";
+    
+    const WEB_APP =
+     "https://script.google.com/a/macros/fyzlgroup.com/s/AKfycbz-YFjRt7aB96s4YaAkaxxaeabe9SYkov3ogkiZ5u8ULIywame3FNhYVFVJXzN-QFgXRg/exec";
+   
 
-      frame
-        .requestFullscreen()
-        .catch(err => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
 
-          console.error(err);
+    const iframeUrl = new URL(WEB_APP);
 
-        });
+    if (token) {
+      iframeUrl.searchParams.set("token", token);
+    }
 
-    };
-
+    document.getElementById("loanFrame").src = iframeUrl.toString();
   </script>
-
 </body>
-
 </html>
